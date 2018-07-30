@@ -43,7 +43,7 @@ model_name = args.model_name
 
 if validate:
 	val_images_path = args.val_images
-        val_segs_path = args.val_annotations:
+        val_segs_path = args.val_annotations
 	val_batch_size = args.val_batch_size
 
 modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet.VGGUnet , 'vgg_unet2':Models.VGGUnet.VGGUnet2 , 'fcn8':Models.FCN8.FCN8 , 'fcn32':Models.FCN32.FCN32   }
