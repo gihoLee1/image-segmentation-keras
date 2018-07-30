@@ -8,8 +8,8 @@ parser.add_argument("--save_weights_path", type = str  )
 parser.add_argument("--train_images", type = str  )
 parser.add_argument("--train_annotations", type = str  )
 parser.add_argument("--n_classes", type=int )
-parser.add_argument("--input_height", type=int , default = 224  )
-parser.add_argument("--input_width", type=int , default = 224 )
+parser.add_argument("--input_height", type=int , default = 480  )
+parser.add_argument("--input_width", type=int , default = 640 )
 
 parser.add_argument('--validate',action='store_false')
 parser.add_argument("--val_images", type = str , default = "")
@@ -43,7 +43,7 @@ model_name = args.model_name
 
 if validate:
 	val_images_path = args.val_images
-	val_segs_path = args.val_annotations
+        val_segs_path = args.val_annotations:
 	val_batch_size = args.val_batch_size
 
 modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet.VGGUnet , 'vgg_unet2':Models.VGGUnet.VGGUnet2 , 'fcn8':Models.FCN8.FCN8 , 'fcn32':Models.FCN32.FCN32   }
