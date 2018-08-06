@@ -81,4 +81,11 @@ else:
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
 
+import tensorflow as tf
+
+converter = tf.contrib.lite.TocoConverter.from_keras_model_file("ex1.model.0.h5")
+tflite_model = converter.convert()
+open("converted_model.tflite", "wb").write(tflite_model)
+
+
 
