@@ -1,6 +1,5 @@
 import argparse
 import Models , LoadBatches
-import tensorflow as tf
 
 
 
@@ -73,19 +72,12 @@ if validate:
 
 if not validate:
 	for ep in range( epochs ):
-		m.fit_generator( G , 150  , epochs=2 )
+		m.fit_generator( G , 128  , epochs=4 )
 		m.save_weights( save_weights_path + "." + str( ep ) )
 		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
-                converter = tf.contrib.lite.TocoConverter.from_keras_model_file("ex1.model.0.h5")
-                tflite_model = converter.convert()
-                open("converted_model.tflite", "wb").write(tflite_model)
-else:
+       else:
 	for ep in range( epochs ):
-		m.fit_generator( G , 150  , validation_data=G2 , validation_steps=200 ,  epochs=2 )
+		m.fit_generator( G , 128  , validation_data=G2 , validation_steps=200 ,  epochs=4 )
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
-                converter = tf.contrib.lite.TocoConverter.from_keras_model_file("ex1.model.0.h5")
-                tflite_model = converter.convert()
-                open("converted_model.tflite", "wb").write(tflite_model)
-
-
+          
