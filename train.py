@@ -72,14 +72,14 @@ if validate:
 
 if not validate:
 	for ep in range( epochs ):
-		m.fit_generator( G , 128  , epochs=5 )
+		m.fit_generator( G , 128  , epochs=4 )
 		m.save_weights( save_weights_path + "." + str( ep ) )
 		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
             
 else:
             
         for ep in range( epochs ):
-                m.fit_generator( G , 128  , validation_data=G2 , validation_steps=200 ,  epochs=5 )
+                m.fit_generator( G , 128  , validation_data=G2 , validation_steps=200 ,  epochs=4 )
 		m.save_weights( save_weights_path + "." + str( ep )  )
 		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
           
