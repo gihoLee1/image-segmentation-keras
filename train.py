@@ -40,13 +40,12 @@ load_weights = args.load_weights
 optimizer_name = args.optimizer_name
 model_name = args.model_name
 
-
 if validate:
 	val_images_path = args.val_images
-        val_segs_path = args.val_annotations
+	val_segs_path = args.val_annotations
 	val_batch_size = args.val_batch_size
 
-modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet.VGGUnet , 'vgg_unet2':Models.VGGUnet.VGGUnet2 , 'fcn8':Models.FCN8.FCN8 , 'fcn32':Models.FCN32.FCN32   }
+modelFns = { 'vgg_segnet':Models.VGGSegnet.VGGSegnet , 'vgg_unet':Models.VGGUnet.VGGUnet , 'vgg_unet2':Models.VGGUnet.VGGUnet2 , 'fcn8':Models.FCN8.FCN8 , 'fcn32':Models.FCN32.FCN32  }
 modelFN = modelFns[ model_name ]
 
 m = modelFN( n_classes , input_height=input_height, input_width=input_width   )
@@ -72,14 +71,13 @@ if validate:
 
 if not validate:
 	for ep in range( epochs ):
-		m.fit_generator( G , 128  , epochs=4 )
+		m.fit_generator( G , 512  , epochs=40 )
 		m.save_weights( save_weights_path + "." + str( ep ) )
-		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
-            
+		m.save( save_weights_path + ".model." + str( ep ) )
 else:
-            
-        for ep in range( epochs ):
-                m.fit_generator( G , 128  , validation_data=G2 , validation_steps=200 ,  epochs=4 )
+	for ep in range( epochs ):
+		m.fit_generator( G , 512  , validation_data=G2 , validation_steps=200 ,  epochs=40 )
 		m.save_weights( save_weights_path + "." + str( ep )  )
-		m.save( save_weights_path + ".model." + str( ep ) + ".h5" )
-          
+		m.save( save_weights_path + ".model." + str( ep ) )
+
+
